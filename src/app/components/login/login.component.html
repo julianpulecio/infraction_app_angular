@@ -1,0 +1,17 @@
+<div class="col-4 justify-content-center">
+    <div class="login-form">
+        <form [formGroup]="form_data" method="post" (ngSubmit)="onClickSubmit(form_data.value)">
+            <h2 class="text-center">Log in</h2>       
+            <div class="form-group">
+                <input type="text" formControlName="identification_number" class="form-control" placeholder="identification_number" required="required">
+            </div>
+            <div class="form-group">
+                <input type="password" formControlName="password" class="form-control" placeholder="Password" required="required">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Log in</button>
+            </div>
+        </form>
+        <p class="text-center"><a href="#">Create an Account</a></p>
+    </div>
+</div>

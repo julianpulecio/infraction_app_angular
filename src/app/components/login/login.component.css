@@ -1,0 +1,19 @@
+.login-form {
+    width: 340px;
+    margin: 50px auto;
+}
+.login-form form {
+    margin-bottom: 15px;
+    padding: 10px;
+}
+.login-form h2 {
+    margin: 0 0 15px;
+}
+.btn {        
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+input {
+    margin-bottom: 1rem;
+}
