@@ -1,72 +1,39 @@
 <div class="col-12 mt-5 mb-5 d-flex justify-content-center">
     <form [formGroup]="form_data" method="post" (ngSubmit)="onClickSubmit(form_data.value)">
-        <h2 class="text-center">check your infractions</h2>       
+        <h2 class="text-center">check your infractions</h2>
+        <small class="invalid-feedback d-block" *ngIf="form_data.errors" >
+            {{form_data.errors}}
+        </small>
         <div class="form-group">
             <input type="email" formControlName="email" class="form-control" placeholder="email" required="required">
+            <small class="invalid-feedback d-block" *ngIf="form_data.get('title')?.errors" >
+                {{form_data.get('identification_number')?.errors}}
+            </small>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">submit</button>
         </div>
     </form>
 </div>
-<div class="col-12">
+<div *ngFor="let vehicle of vehicles">
+    <div class="row col-8">
+        <p class="col">{{vehicle.plate}} Infractions:</p>
+    </div>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">plate</th>
-                <th scope="col">brand</th>
-                <th scope="col">color</th>
+                <th scope="col">policeman</th>
+                <th scope="col">timestamp</th>
+                <th scope="col">comments</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">plate</th>
-                <th scope="col">brand</th>
-                <th scope="col">color</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
+            <tr *ngFor="let infraction of vehicle.infractions">
+                <th scope="row">{{infraction.id}}</th>
+                <td>{{infraction.policeman.identification_number}}</td>
+                <td>{{infraction.timestamp}}</td>
+                <td>{{infraction.comments}}</td>
             </tr>
         </tbody>
     </table>
