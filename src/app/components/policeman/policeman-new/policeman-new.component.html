@@ -1,1 +1,40 @@
-<p>policeman-new works!</p>
+<form [formGroup]="form_data" class="d-grid gap-3 m-3" (ngSubmit)="onClickSubmit(form_data.value)">
+    <ul>
+        <li *ngFor="let error of errors">
+            <small class="invalid-feedback d-block" *ngIf="form_data.get('identification_number')?.errors" >
+            {{error}}
+        </small>
+        </li>
+    </ul>
+    <div class="form-group">
+        <label>Policeman Identification Number</label>
+        <input [(ngModel)]="policeman.identification_number" class="form-control" formControlName="identification_number">
+        <small class="invalid-feedback d-block" *ngIf="form_data.get('identification_number')?.errors" >
+            {{form_data.get('identification_number')?.errors}}
+        </small>
+    </div>
+    <div class="form-group">
+        <label>Policeman Name</label>
+        <input [(ngModel)]="policeman.name" class="form-control" formControlName="name">
+        <small class="invalid-feedback d-block" *ngIf="form_data.get('name')?.errors" >
+            {{form_data.get('name')?.errors}}
+        </small>
+    </div>
+    <div class="form-group">
+        <label>Policeman Password</label>
+        <input [(ngModel)]="policeman.password" class="form-control" formControlName="password" type="password">
+        <small class="invalid-feedback d-block" *ngIf="form_data.get('password')?.errors" >
+            {{form_data.get('password')?.errors}}
+        </small>
+    </div>
+    <div class="form-group">
+        <label>Policeman Confirm Password</label>
+        <input [(ngModel)]="policeman.confirm_password" class="form-control" formControlName="confirm_password" type="password">
+        <small class="invalid-feedback d-block" *ngIf="form_data.get('confirm_password')?.errors" >
+            {{form_data.get('confirm_password')?.errors}}
+        </small>
+    </div>                   
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+</form>

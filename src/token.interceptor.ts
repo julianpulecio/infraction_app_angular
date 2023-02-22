@@ -3,6 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, filter, take, switchMap } from 'rxjs/operators';
 import { AuthService } from './app/services/auth.service';
+import { config } from './config';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -15,12 +16,12 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     if (this.auth_service.getJwtToken()) {
-      
       request = this.addToken(request, this.auth_service.getJwtToken());
     }
 
     return next.handle(request).pipe(catchError(error => {
-      if (error instanceof HttpErrorResponse && error.status === 401) {
+      console.log(request.url)
+      if (error instanceof HttpErrorResponse && error.status === 401 && request.url != `${config.api}/token/login/`) {
         return this.handle401Error(request, next);
       } else {
         return throwError(error);

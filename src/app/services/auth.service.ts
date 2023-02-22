@@ -16,14 +16,6 @@ export class AuthService {
 
   login(user: { identification_number: string, password: string }): Observable<boolean> {
     return this.http.post<any>(`${config.api}/token/login/`, user)
-      .pipe(
-        tap(tokens => this.doLoginUser(user.identification_number, tokens)),
-        mapTo(true),
-        catchError(error => {
-          console.log(error)
-          alert(error.error);
-          return of(false);
-        }));
   }
 
   logout() {
@@ -46,7 +38,7 @@ export class AuthService {
     return localStorage.getItem(this.JWT_TOKEN);
   }
 
-  private doLoginUser(identification_number: string, tokens: any) {
+  doLoginUser(identification_number: string, tokens: any) {
     this.storeTokens(tokens);
   }
 

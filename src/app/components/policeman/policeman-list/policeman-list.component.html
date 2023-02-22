@@ -1,1 +1,20 @@
-<p>policeman-list works!</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">IDENTIFICATION_NUMBER</th>
+            <th scope="col">NAME</th>
+            <th scope="col">ACTIONS</th>
+        </tr>
+    </thead>    
+    <tbody>
+        <tr *ngFor="let policeman of policemen">
+            <th scope="row">{{policeman.id}}</th>
+            <td>{{policeman.identification_number}}</td>
+            <td>{{policeman.name}}</td>
+            <td>
+                <button type="button" class="btn btn-primary m-1" (click)="show_edit_form(policeman.identification_number)">Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

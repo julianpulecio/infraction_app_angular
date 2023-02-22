@@ -14,10 +14,7 @@ export class PersonListComponent implements OnInit {
 
   ngOnInit(): void {
     this.person_service.get_persons().subscribe({
-      next:(data)=> {
-        console.log(data)
-        this.persons = data
-      }
+      next:(data)=> this.persons = data
     })
   }
 
