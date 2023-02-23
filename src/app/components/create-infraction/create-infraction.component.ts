@@ -2,44 +2,38 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { PersonService } from 'src/app/services/person.service';
+import { InfractionService } from 'src/app/services/infraction.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
 
-interface vehicle {
-  plate: string;
-  brand: string;
-  color: string;
-  person: Array<any>;
+interface infraction {
+  placa_patente: Array<any>;
+  comentarios: string
 }
 
 @Component({
-  selector: 'app-vehicle-new',
-  templateUrl: './vehicle-new.component.html',
+  selector: 'app-create-infraction',
+  templateUrl: './create-infraction.component.html',
 })
-export class VehicleNewComponent implements OnInit {
+export class CreateInfractionComponent implements OnInit {
 
-  constructor(private vehicle_service:VehicleService, private person_service:PersonService, private fb: FormBuilder, private route: ActivatedRoute, private router:Router) { }
+  constructor(private vehicle_service:VehicleService, private infraction_service:InfractionService, private fb: FormBuilder, private route: ActivatedRoute, private router:Router) { }
 
-  vehicle:vehicle = {
-    plate:'',
-    brand:'',
-    color:'',
-    person: [ {id: 0}]
+  infraction:infraction = {
+    placa_patente:[],
+    comentarios: ''
   }
 
   form_data:FormGroup = new FormGroup({ 
-    plate: new FormControl(),
-    brand: new FormControl(),
-    color: new FormControl(),
-    person: new FormControl()
+    placa_patente: new FormControl(),
+    comentarios: new FormControl()
   });
 
-  all_persons_List:any = [];
-  selected_person:any;
-  dropdown_persons_settings:IDropdownSettings = {
+  all_vehicles_List:any = [];
+  selected_vehicle:any;
+  dropdown_vehicles_settings:IDropdownSettings = {
     singleSelection: true,
-    idField: 'id',
-    textField: 'email',
+    idField: 'plate',
+    textField: 'plate',
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
     itemsShowLimit: 3,
@@ -49,9 +43,9 @@ export class VehicleNewComponent implements OnInit {
   errors:Array<any> = []
 
   ngOnInit(): void {
-    this.person_service.get_persons().subscribe({
+    this.vehicle_service.get_vehicles().subscribe({
       next:(data)=> {
-        this.all_persons_List = data
+        this.all_vehicles_List = data
       },
       error: (error) =>{
         alert(error.error.detail)
@@ -61,12 +55,15 @@ export class VehicleNewComponent implements OnInit {
   }
 
   onClickSubmit(value:any){
-    value.person = value.person.find(Boolean).id
+    if(value.placa_patente.length){
+      value.placa_patente = value.placa_patente.find(Boolean).plate
+    }
+    value.timestamp = new Date().toISOString()
     this.errors = []
-    this.vehicle_service.new_vehicle(value).subscribe({
+    this.infraction_service.new_infraction(value).subscribe({
       next:(data)=> {
         alert('success')
-        this.router.navigate([`vehicle-list/`])
+        window.location.reload();
       },
       error: (error)=>{
         const validation_errors = error.error
@@ -81,4 +78,5 @@ export class VehicleNewComponent implements OnInit {
       }
     })
   }
+
 }

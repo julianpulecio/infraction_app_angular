@@ -1,1 +1,26 @@
-<p>person-new works!</p>
+<form [formGroup]="form_data" class="d-grid gap-3 m-3" (ngSubmit)="onClickSubmit(form_data.value)">
+    <ul>
+        <li *ngFor="let error of errors">
+            <small class="invalid-feedback d-block">
+            {{error}}
+            </small>
+        </li>
+    </ul>
+    <div class="form-group">
+        <label>Person Email</label>
+        <input [(ngModel)]="person.email" class="form-control" formControlName="email">
+        <small class="invalid-feedback d-block" *ngIf="form_data.get('email')?.errors" >
+            {{form_data.get('email')?.errors}}
+        </small>
+    </div>
+    <div class="form-group">
+        <label>Person name</label>
+        <input [(ngModel)]="person.name" class="form-control" formControlName="name">
+        <small class="invalid-feedback d-block" *ngIf="form_data.get('name')?.errors" >
+            {{form_data.get('name')?.errors}}
+        </small>
+    </div>             
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+</form>

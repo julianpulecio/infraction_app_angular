@@ -1,1 +1,26 @@
-<p>vehicle-list works!</p>
+<button type="button" class="btn btn-primary m-1" (click)="show_new_form()">New</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">PLATE</th>
+            <th scope="col">BRAND</th>
+            <th scope="col">COLOR</th>
+            <th scope="col">PERSON</th>
+            <th scope="col">ACTION</th>
+        </tr>
+    </thead>    
+    <tbody>
+        <tr *ngFor="let vehicle of vehicles">
+            <th scope="row">{{vehicle.id}}</th>
+            <td>{{vehicle.plate}}</td>
+            <td>{{vehicle.brand}}</td>
+            <td>{{vehicle.color}}</td>
+            <td>{{vehicle.person.email}}</td>
+            <td>
+                <button type="button" class="btn btn-primary m-1" (click)="show_edit_form(vehicle.plate)">Edit</button>
+                <button type="button" class="btn btn-danger m-1" (click)="delete(vehicle.plate)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

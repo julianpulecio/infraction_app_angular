@@ -3,43 +3,37 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PolicemanService } from 'src/app/services/policeman.service';
 
-interface policeman {
-  name: string;
+interface credentials {
+  password: string;
+  confirm_password: string
 }
 
 @Component({
-  selector: 'app-policeman-edit',
-  templateUrl: './policeman-edit.component.html',
-  
+  selector: 'app-policeman-update-password',
+  templateUrl: './policeman-update-password.component.html',
 })
-export class PolicemanEditComponent implements OnInit {
+export class PolicemanUpdatePasswordComponent implements OnInit {
 
   constructor(private policeman_service:PolicemanService, private route: ActivatedRoute, private router:Router) { }
 
-  policeman:policeman = {
-    name:''
+  credentials:credentials = {
+    password:'',
+    confirm_password:''
   }
 
   form_data:FormGroup = new FormGroup({ 
-    name: new FormControl(),
+    password: new FormControl(),
+    confirm_password: new FormControl(),
   });
 
   errors:Array<any> = []
 
   ngOnInit(): void {
-    this.policeman_service.get_policeman(this.route.snapshot.paramMap.get('identification_number')).subscribe({
-      next:(data)=> {
-        this.policeman = data
-      },
-      error: (error) =>{
-        alert(error.error.detail)
-        this.router.navigate([`policeman-list/`])
-      }
-    })
   }
 
   onClickSubmit(value:any){
-    this.policeman_service.edit_policeman(value,this.route.snapshot.paramMap.get('identification_number')).subscribe({
+    this.errors = []
+    this.policeman_service.update_password_policeman(value,this.route.snapshot.paramMap.get('identification_number')).subscribe({
       next:(data)=> {
         alert('success')
         this.router.navigate([`policeman-list/`])
@@ -57,5 +51,4 @@ export class PolicemanEditComponent implements OnInit {
       }
     })
   }
-
 }

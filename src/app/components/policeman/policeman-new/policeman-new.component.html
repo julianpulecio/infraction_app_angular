@@ -1,9 +1,9 @@
 <form [formGroup]="form_data" class="d-grid gap-3 m-3" (ngSubmit)="onClickSubmit(form_data.value)">
     <ul>
         <li *ngFor="let error of errors">
-            <small class="invalid-feedback d-block" *ngIf="form_data.get('identification_number')?.errors" >
+            <small class="invalid-feedback d-block">
             {{error}}
-        </small>
+            </small>
         </li>
     </ul>
     <div class="form-group">

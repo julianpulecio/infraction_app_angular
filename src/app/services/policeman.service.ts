@@ -22,6 +22,9 @@ export class PolicemanService {
   edit_policeman(policeman: { name: string  }, identification_number:string|null): Observable<any> {
     return this.http.put<any>(`${config.api}/policeman/${identification_number}/`, policeman )
   }
+  update_password_policeman(policeman: { name: string  }, identification_number:string|null): Observable<any> {
+    return this.http.put<any>(`${config.api}/policeman/password_update/${identification_number}/`, policeman )
+  }
   delete_policeman(identification_number:string|null): Observable<any> {
     return this.http.delete<any>(`${config.api}/policeman/${identification_number}/`)
   }

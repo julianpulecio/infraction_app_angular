@@ -1,9 +1,11 @@
+<button type="button" class="btn btn-primary m-1" (click)="show_new_form()">New</button>
 <table class="table">
     <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">NAME</th>
-            <th scope="col">email</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">ACTIONS</th>
         </tr>
     </thead>    
     <tbody>
@@ -11,6 +13,10 @@
             <th scope="row">{{person.id}}</th>
             <td>{{person.name}}</td>
             <td>{{person.email}}</td>
+            <td>
+                <button type="button" class="btn btn-primary m-1" (click)="show_edit_form(person.email)">Edit</button>
+                <button type="button" class="btn btn-danger m-1" (click)="delete(person.email)">Delete</button>
+            </td>
         </tr>
     </tbody>
 </table>

@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ReportComponent } from './components/report/report.component';
 import { PersonListComponent } from './components/person/person-list/person-list.component';
 import { PersonNewComponent } from './components/person/person-new/person-new.component';
@@ -18,6 +19,8 @@ import { PolicemanEditComponent } from './components/policeman/policeman-edit/po
 import { PolicemanListComponent } from './components/policeman/policeman-list/policeman-list.component';
 import { VehicleListComponent } from './components/vehicle/vehicle-list/vehicle-list.component';
 import { TokenInterceptor } from 'src/token.interceptor';
+import { PolicemanUpdatePasswordComponent } from './components/policeman/policeman-update-password/policeman-update-password.component';
+import { CreateInfractionComponent } from './components/create-infraction/create-infraction.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import { TokenInterceptor } from 'src/token.interceptor';
     PolicemanNewComponent,
     PolicemanEditComponent,
     PolicemanListComponent,
-    VehicleListComponent
+    VehicleListComponent,
+    PolicemanUpdatePasswordComponent,
+    CreateInfractionComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,7 @@ import { TokenInterceptor } from 'src/token.interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     {

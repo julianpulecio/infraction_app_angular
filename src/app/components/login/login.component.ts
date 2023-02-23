@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.auth_service.login(value).subscribe({
       next: (data) => { 
         this.auth_service.doLoginUser(value.identification_number, data)
-        this.router.navigate(['/person-list'])
+        this.router.navigate(['/report'])
       },
       error: (error:any) => {
         const validation_errors = error.error

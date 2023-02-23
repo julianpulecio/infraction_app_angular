@@ -1,3 +1,4 @@
+<button type="button" class="btn btn-primary m-1" (click)="show_new_form()">New</button>
 <table class="table">
     <thead>
         <tr>
@@ -14,6 +15,7 @@
             <td>{{policeman.name}}</td>
             <td>
                 <button type="button" class="btn btn-primary m-1" (click)="show_edit_form(policeman.identification_number)">Edit</button>
+                <button type="button" class="btn btn-danger m-1" (click)="delete(policeman.identification_number)">delete</button>
             </td>
         </tr>
     </tbody>

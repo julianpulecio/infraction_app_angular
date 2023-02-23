@@ -35,9 +35,7 @@ export class TokenInterceptor implements HttpInterceptor {
         'Authorization': `Bearer ${token}`
       }
     });
-    console.log(request.headers)
     return request
-    
   }
 
   private handle401Error(request: HttpRequest<any>, next: HttpHandler) {

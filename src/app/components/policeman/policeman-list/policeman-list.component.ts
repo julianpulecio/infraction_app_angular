@@ -25,6 +25,10 @@ export class PolicemanListComponent implements OnInit {
     this.router.navigate([`policeman-edit/${identification_number}`])
   }
 
+  show_new_form(){
+    this.router.navigate([`policeman-new/`])
+  }
+
   delete(identification_number:string){
     if (confirm("Are you sure? you will not be able to log with this user") == true) {
       this.policeman_service.delete_policeman(identification_number).subscribe({

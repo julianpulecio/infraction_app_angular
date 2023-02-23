@@ -1,0 +1,25 @@
+<form [formGroup]="form_data" class="d-grid gap-3 m-3" (ngSubmit)="onClickSubmit(form_data.value)">
+    <div class="form-group">
+        <label>Select Person</label>
+        <ng-multiselect-dropdown formControlName="placa_patente"
+          [(ngModel)]="infraction.placa_patente" 
+          [placeholder]="'Assing a vehicle'"
+          [settings]="dropdown_vehicles_settings"
+          [data]="all_vehicles_List"
+        >
+        </ng-multiselect-dropdown>
+        <small class="invalid-feedback d-block" *ngIf="form_data.get('placa_patente')?.errors" >
+          {{form_data.get('placa_patente')?.errors}}
+        </small>
+    </div>
+    <div class="form-group">
+        <label>comentarios</label>
+        <input [(ngModel)]="infraction.comentarios" class="form-control" formControlName="comentarios">
+        <small class="invalid-feedback d-block" *ngIf="form_data.get('comentarios')?.errors" >
+            {{form_data.get('comentarios')?.errors}}
+        </small>
+    </div>                  
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+</form>
