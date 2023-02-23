@@ -4,7 +4,7 @@
         <app-sidebar></app-sidebar>
       </div>
       <main class="col ps-md-2 pt-2">
-          <a href="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i> Menu</a>
+          <a routerLink="#" data-bs-target="#sidebar" data-bs-toggle="collapse" class="border rounded-3 p-1 text-decoration-none"><i class="bi bi-list bi-lg py-2 p-1"></i> Menu</a>
           <button *ngIf="is_logged" class="border rounded-3 p-1 text-decoration-none m-1" (click)="log_out()"><i class="bi bi-list bi-lg py-2 p-1"></i> Logout</button>
           <button *ngIf="is_logged" class="border rounded-3 p-1 text-decoration-none m-1" (click)="update_password()"><i class="bi bi-list bi-lg py-2 p-1"></i> Update_password</button>
           <div class="d-flex justify-content-center page-header pt-3">
